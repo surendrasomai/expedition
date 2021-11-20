@@ -131,13 +131,13 @@ function App(props: any) {
     }
     const { name } = selectedChain as Chain;
 
-    if (name !== query.network) {
-      setQuery({ network: name });
-      history.push({
-        pathname: history.location.pathname,
-        search: `?network=${name}`,
-      });
-    }
+    // if (name !== query.network) {
+    //   setQuery({ network: name });
+    //   history.push({
+    //     pathname: history.location.pathname,
+    //     search: `?network=${name}`,
+    //   });
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedChain, setQuery]);
 
@@ -303,8 +303,9 @@ function App(props: any) {
                 />
               </Grid>
               <Grid item>
+              <Grid item style={{ display:"none"}} >
                 {selectedChain ? (
-                  <ChainDropdown
+                  <ChainDropdown 
                     chains={chains}
                     onChange={setSelectedChain}
                     selected={selectedChain}
@@ -321,12 +322,16 @@ function App(props: any) {
                     {!query.rpcUrl && <CircularProgress />}
                   </>
                 )}
+                </Grid>
+                <Grid item style={{ display:"none"}} >
                 <Tooltip title={t("Add custom chain") as string}>
                   <IconButton onClick={openAddChainModal}>
                     <PlaylistAddIcon />
                   </IconButton>
                 </Tooltip>
+                </Grid>
                 <LanguageMenu />
+                <Grid item style={{ display:"none"}} >
                 <Tooltip title={t("JSON-RPC API Documentation") as string}>
                   <IconButton
                     onClick={
@@ -348,6 +353,7 @@ function App(props: any) {
                     <CodeIcon />
                   </IconButton>
                 </Tooltip>
+                </Grid>
                 <Tooltip title={t("Toggle Dark Mode") as string}>
                   <IconButton onClick={darkMode.toggle}>
                     {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}

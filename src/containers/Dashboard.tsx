@@ -111,12 +111,12 @@ export default (props: any) => {
               </ChartCard>
             </div>
           }
-          <Grid key="gasPrice" item>
+          <Grid key="gasPrice" item style={{ display:"none"}} >
             <ChartCard title={t("Gas Price")}>
               <Typography variant="h4">{weiToGwei(hexToNumber(gasPrice))} Gwei</Typography>
             </ChartCard>
           </Grid>
-          <Grid key="hRate" item>
+          <Grid key="hRate" item style={{ display:"none"}} >
             <ChartCard title={t("Network Hash Rate")}>
               {block &&
                 <HashRate block={block} blockTime={config.blockTime}>
